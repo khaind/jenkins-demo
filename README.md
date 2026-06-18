@@ -4,9 +4,9 @@ This project is a hands-on guide for learning Jenkins using the Pareto principle
 
 The goal is not to memorize every Jenkins feature. The goal is to become productive with Jenkins pipelines, understand how CI/CD jobs run, and know how to debug the common problems you will actually encounter.
 
-## Lesson 01 — Core Concepts
+## Lesson 00 — Core Concepts
 
-Start here: [docs/lesson-01-core-concepts.md](docs/lesson-01-core-concepts.md)
+Start here: [docs/lesson-00-core-concepts.md](docs/lesson-00-core-concepts.md)
 
 Covers the mental model, the 10 terms that unlock everything (with a restaurant kitchen analogy to link them into one story), and vocabulary to ignore until later.
 
@@ -23,39 +23,11 @@ Covers the mental model, the 10 terms that unlock everything (with a restaurant 
 9. Learn how to debug failed builds.
 10. Learn multibranch pipelines.
 
-## Run Jenkins Locally
+## Lesson 01 — Run Jenkins Locally
 
-If you use Docker:
+See: [docs/lesson-01-run-jenkins-locally.md](docs/lesson-01-run-jenkins-locally.md)
 
-```bash
-docker run \
-  --name jenkins-demo \
-  --rm \
-  -p 8080:8080 \
-  -p 50000:50000 \
-  -v jenkins_home:/var/jenkins_home \
-  jenkins/jenkins:lts
-```
-
-If you use Podman:
-
-```bash
-podman run \
-  --name jenkins-demo \
-  --rm \
-  -p 8080:8080 \
-  -p 50000:50000 \
-  -v jenkins_home:/var/jenkins_home \
-  jenkins/jenkins:lts
-```
-
-Then open:
-
-```text
-http://localhost:8080
-```
-
-Jenkins will print an initial admin password in the container logs. Copy it into the setup screen, then install the suggested plugins.
+Covers the correct Podman/Docker command, container management, the first-time setup wizard, and how to register a repo so Jenkins can find your `Jenkinsfile`.
 
 ## First Manual Job
 
