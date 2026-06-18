@@ -29,34 +29,11 @@ See: [docs/lesson-01-run-jenkins-locally.md](docs/lesson-01-run-jenkins-locally.
 
 Covers the correct Podman/Docker command, container management, the first-time setup wizard, and how to register a repo so Jenkins can find your `Jenkinsfile`.
 
-## First Manual Job
+## Lesson 02 — First Manual Job
 
-Start with a freestyle job to understand the basics before using pipelines.
+See: [docs/lesson-02-first-manual-job.md](docs/lesson-02-first-manual-job.md)
 
-1. Open Jenkins.
-2. Select **New Item**.
-3. Enter `hello-freestyle`.
-4. Choose **Freestyle project**.
-5. Add a build step: **Execute shell**.
-6. Use this command:
-
-```bash
-echo "Hello from Jenkins"
-date
-pwd
-ls -la
-```
-
-7. Save the job.
-8. Click **Build Now**.
-9. Open the build output and inspect the console log.
-
-What you should learn:
-
-- Jenkins runs commands in a workspace.
-- Every build has a console log.
-- The console log is your first debugging tool.
-- Jenkins jobs are just automation around shell commands, source control, credentials, and plugins.
+Covers freestyle jobs, the workspace, reading the console log, and intentionally breaking a build to understand failure.
 
 ## First Pipeline Job
 
