@@ -4,45 +4,11 @@ This project is a hands-on guide for learning Jenkins using the Pareto principle
 
 The goal is not to memorize every Jenkins feature. The goal is to become productive with Jenkins pipelines, understand how CI/CD jobs run, and know how to debug the common problems you will actually encounter.
 
-## What Jenkins Is
+## Lesson 01 — Core Concepts
 
-Jenkins is an automation server commonly used for CI/CD.
+Start here: [docs/lesson-01-core-concepts.md](docs/lesson-01-core-concepts.md)
 
-In practice, Jenkins usually does these jobs:
-
-- Pull source code from Git.
-- Install dependencies.
-- Run tests.
-- Build/package an application.
-- Publish artifacts.
-- Deploy to an environment.
-- Notify people or systems when something succeeds or fails.
-
-## The 80/20 Jenkins Concepts
-
-Learn these first:
-
-- **Controller**: The main Jenkins server that manages jobs, configuration, plugins, users, and build history.
-- **Agent**: A machine or container where build steps actually run.
-- **Job**: A configured Jenkins task. Older Jenkins setups often use freestyle jobs.
-- **Pipeline**: A job defined as code, usually in a `Jenkinsfile`.
-- **Jenkinsfile**: The pipeline definition stored with the application source code.
-- **Stage**: A named section of a pipeline, such as `Test`, `Build`, or `Deploy`.
-- **Step**: One action inside a stage, such as running `npm test` or `./scripts/build.sh`.
-- **Workspace**: The directory Jenkins uses while running a build.
-- **Artifact**: A build output saved by Jenkins, such as a `.jar`, `.zip`, test report, or generated file.
-- **Credentials**: Secrets stored in Jenkins and injected safely into builds.
-- **Plugin**: An extension that adds integrations or features.
-- **Trigger**: A reason to start a build, such as a Git push, schedule, or manual click.
-
-Ignore these until later:
-
-- Complex shared libraries.
-- Jenkins Configuration as Code.
-- Custom plugins.
-- Advanced distributed build farms.
-- Deep Groovy scripting.
-- Complex deployment orchestration.
+Covers the mental model, the 10 terms that unlock everything (with a restaurant kitchen analogy to link them into one story), and vocabulary to ignore until later.
 
 ## Recommended Learning Order
 
@@ -436,23 +402,6 @@ If Jenkins cannot parse the `Jenkinsfile`, check:
 - Declarative blocks are in the correct location.
 - Plugin-specific steps are available.
 
-## Jenkins Mental Model
-
-Think of Jenkins as:
-
-```text
-trigger -> checkout -> run commands -> collect results -> report status
-```
-
-Most Jenkins problems are caused by one of these:
-
-- The wrong code was checked out.
-- The command works locally but not on the Jenkins agent.
-- The workspace is different than expected.
-- A secret or environment variable is missing.
-- A plugin or tool is missing.
-- The pipeline is doing too much in one unclear stage.
-
 ## What To Learn Later
 
 After you are comfortable with the basics, learn these:
@@ -467,19 +416,6 @@ After you are comfortable with the basics, learn these:
 - Static analysis reports.
 - Deployment approvals.
 - Role-based access control.
-
-## Useful Vocabulary
-
-- **Build**: One execution of a job or pipeline.
-- **Executor**: A slot that can run one build.
-- **Node**: A Jenkins machine capable of running builds.
-- **Agent**: A node used to execute pipeline work.
-- **Workspace**: Files used during a build.
-- **SCM**: Source control management, usually Git.
-- **Artifact**: File saved after a build.
-- **Fingerprint**: Jenkins metadata for tracking artifacts.
-- **Blue Ocean**: Jenkins UI focused on pipeline visualization.
-- **Multibranch pipeline**: A pipeline job that automatically creates jobs for branches and pull requests.
 
 ## Next Step
 
