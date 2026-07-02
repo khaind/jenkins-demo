@@ -121,6 +121,68 @@ Click **Build Now**. Jenkins will:
 
 ---
 
+## Triggering Builds
+
+Jenkins never watches GitHub on its own. A build only starts when something explicitly tells it to. There are three ways:
+
+| Trigger | How it works | Works locally? |
+|---|---|---|
+| **Manual** | Click "Build Now" in the UI | Yes — always available |
+| **SCM Polling** | Jenkins checks git on a timer | Yes — no public URL needed |
+| **Webhook** | GitHub notifies Jenkins on push | No — requires a public URL |
+
+Your Jenkins runs at `http://localhost:8080` — a private address GitHub cannot reach. Webhooks need a public URL, so **SCM polling** is the right choice for this sandbox.
+
+### Enable SCM Polling
+
+In your job: **Configure → Build Triggers → Poll SCM**
+
+Set the schedule:
+
+```
+H/2 * * * *
+```
+
+This checks GitHub every 2 minutes. The `H` (hash) staggers the start time so all jobs don't hit GitHub at the exact same second.
+
+```
+H/2 * * * *
+ │   │ │ │ └── day of week (any)
+ │   │ │ └──── month (any)
+ │   │ └────── day of month (any)
+ │   └──────── hour (any)
+ └──────────── every 2 minutes
+```
+
+After saving, the polling loop is:
+
+```
+git push to GitHub
+       │
+       ▼  (up to 2 min wait)
+Jenkins polls → detects new commit → triggers build automatically
+```
+
+### Triggering in the Jenkinsfile
+
+You can also declare the trigger directly in the `Jenkinsfile` so it is version controlled alongside the pipeline:
+
+```groovy
+pipeline {
+    agent any
+
+    triggers {
+        pollSCM('H/2 * * * *')
+    }
+
+    stages { ... }
+}
+```
+
+When Jenkins first reads this, it registers the schedule automatically — no manual UI config needed for future jobs or branches.
+
+---
+
 ## The Pipeline as Code Loop
 
 After this setup, your development loop is:
