@@ -90,7 +90,10 @@ The `Hello` stage uses `${BUILD_NUMBER}` — one of Jenkins' built-in variables 
 
 ## Connect Jenkins to the Repo
 
-Once you've added the `post` block and committed the file, update the Jenkins job to read from the repo instead of the inline script.
+Once you've added the `post` block, committed, and pushed to GitHub, update the Jenkins job to read from the repo instead of the inline script.
+
+> **Why not a local file path?**
+> Jenkins runs inside a Podman container with its own isolated filesystem. A path like `file:///Users/khai.nguyen/Codes/misc/jenkins-demo` exists on your Mac but is invisible to the container — it can only see paths explicitly mounted as volumes. Using GitHub sidesteps this entirely and is how Jenkins is used in real projects.
 
 ### Option A — Update the existing `hello-pipeline` job
 
@@ -98,19 +101,21 @@ Once you've added the `post` block and committed the file, update the Jenkins jo
 2. Scroll to **Pipeline**
 3. Change **Definition** from `Pipeline script` → `Pipeline script from SCM`
 4. Set **SCM**: Git
-5. Set **Repository URL**: the local path to this repo (e.g. `file:///Users/khai.nguyen/Codes/misc/jenkins-demo`)
+5. Set **Repository URL**: `https://github.com/<your-username>/jenkins-demo.git`
 6. Set **Branch**: `*/main`
 7. Leave **Script Path** as `Jenkinsfile`
 8. Click **Save**
 
+For a **public repo**, no credentials are needed. For a **private repo**, first add a GitHub personal access token as a Jenkins credential (Dashboard → Manage Jenkins → Credentials → Add → Secret text), then select it in the **Credentials** dropdown.
+
 ### Option B — Create a new job
 
-Repeat the "New Item → Pipeline" flow from lesson 03 but choose `Pipeline script from SCM` from the start. Name it `jenkins-demo`.
+Repeat the "New Item → Pipeline" flow from lesson 03 but choose `Pipeline script from SCM` from the start and enter the GitHub URL above. Name it `jenkins-demo`.
 
 ### Build It
 
 Click **Build Now**. Jenkins will:
-1. Clone the repo into the workspace
+1. Clone the repo from GitHub into the workspace
 2. Read `Jenkinsfile` from the cloned copy
 3. Execute the stages defined in it
 
