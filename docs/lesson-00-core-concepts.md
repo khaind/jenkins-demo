@@ -1,4 +1,4 @@
-# Lesson 01 — Core Jenkins Concepts
+# Lesson 00 — Core Jenkins Concepts
 
 ## The One Mental Model
 
@@ -164,19 +164,19 @@ After every service, the **Post** crew runs: clean the station regardless (**alw
 
 ### Quick-Reference Table
 
-| Jenkins Term | Kitchen Equivalent |
-|---|---|
-| **Trigger** | Customer places an order |
-| **Controller** | Head chef — schedules, never cooks |
-| **Agent** | Line cook — does the actual work |
-| **Jenkinsfile** | The recipe card (lives in the recipe binder = git) |
-| **Pipeline** | The full recipe, start to finish |
-| **Workspace** | The cook's prep station |
-| **Stage** | A cooking phase (Prep / Cook / Plate) |
-| **Step** | A single action within a phase (dice, sauté) |
-| **Credentials** | Locked pantry — usable but never visible |
-| **Artifact** | The finished dish sent to the customer |
-| **Post** | End-of-service routine (clean up / ring bell / call manager) |
+| Jenkins Term    | Kitchen Equivalent                                           |
+| --------------- | ------------------------------------------------------------ |
+| **Trigger**     | Customer places an order                                     |
+| **Controller**  | Head chef — schedules, never cooks                           |
+| **Agent**       | Line cook — does the actual work                             |
+| **Jenkinsfile** | The recipe card (lives in the recipe binder = git)           |
+| **Pipeline**    | The full recipe, start to finish                             |
+| **Workspace**   | The cook's prep station                                      |
+| **Stage**       | A cooking phase (Prep / Cook / Plate)                        |
+| **Step**        | A single action within a phase (dice, sauté)                 |
+| **Credentials** | Locked pantry — usable but never visible                     |
+| **Artifact**    | The finished dish sent to the customer                       |
+| **Post**        | End-of-service routine (clean up / ring bell / call manager) |
 
 ---
 
@@ -222,15 +222,15 @@ post {
 
 ## Additional Vocabulary
 
-| Term | Meaning |
-|---|---|
-| **Build** | One execution of a job or pipeline |
-| **Executor** | A slot on an agent that can run one build at a time |
-| **Node** | A Jenkins machine capable of running builds |
-| **SCM** | Source control management (usually Git) |
-| **Fingerprint** | Jenkins metadata for tracking which build produced an artifact |
-| **Multibranch pipeline** | A pipeline job that auto-creates jobs for each branch and PR |
-| **Blue Ocean** | Jenkins UI focused on pipeline visualization |
+| Term                     | Meaning                                                        |
+| ------------------------ | -------------------------------------------------------------- |
+| **Build**                | One execution of a job or pipeline                             |
+| **Executor**             | A slot on an agent that can run one build at a time            |
+| **Node**                 | A Jenkins machine capable of running builds                    |
+| **SCM**                  | Source control management (usually Git)                        |
+| **Fingerprint**          | Jenkins metadata for tracking which build produced an artifact |
+| **Multibranch pipeline** | A pipeline job that auto-creates jobs for each branch and PR   |
+| **Blue Ocean**           | Jenkins UI focused on pipeline visualization                   |
 
 ---
 
