@@ -54,6 +54,35 @@ The `jenkins_home` named volume persists all job configs, credentials, and histo
 
 ---
 
+## Why Two Ports?
+
+```
+Your browser
+    │
+    │ HTTP :8080
+    ▼
+┌─────────────────────────────┐
+│   Jenkins Controller        │
+│   :8080  ← web UI           │
+│   :50000 ← agent listener   │
+└──────────────┬──────────────┘
+               │ JNLP :50000
+               ▼
+        Remote Agent
+        (runs your sh commands)
+```
+
+| Port | Who uses it | Purpose |
+|---|---|---|
+| **8080** | You (browser, webhooks, API) | Web UI and all HTTP traffic |
+| **50000** | Jenkins agents (other machines) | Agents phone home to get work |
+
+**Right now you don't need 50000.** `agent any` uses the built-in executor inside the controller container — no remote agent, no JNLP handshake. It's included in the run command so you don't have to restart the container later when you add real agents.
+
+Kubernetes-based agents (used in production pipelines at Dynatrace) connect via HTTP instead of JNLP, so they only ever need 8080.
+
+---
+
 ## First-Time Setup Wizard
 
 Open `http://localhost:8080` after the container starts.
