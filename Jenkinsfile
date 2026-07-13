@@ -12,11 +12,10 @@ pipeline {
             }
         }
 
-        stage('Hello') {
+        stage('Test') {
             steps {
-                sh 'echo "Running from Jenkinsfile in the repo"'
-                sh 'echo "Build number: ${BUILD_NUMBER}"'
-                sh 'pwd'
+                sh 'chmod +x scripts/test.sh'
+                sh './scripts/test.sh'
             }
         }
     }

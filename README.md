@@ -45,7 +45,13 @@ Covers creating a Pipeline job in the UI, reading the Stage View, the declarativ
 
 See: [docs/lesson-04-move-pipeline-to-jenkinsfile.md](docs/lesson-04-move-pipeline-to-jenkinsfile.md)
 
-Covers creating the `Jenkinsfile` in the repo, what `checkout scm` does, built-in environment variables, and connecting Jenkins to read from SCM.
+Covers creating the `Jenkinsfile` in the repo, what `checkout scm` does, built-in environment variables, connecting Jenkins to read from SCM, and triggering builds with SCM polling.
+
+## Lesson 05 — Run a Test Script
+
+See: [docs/lesson-05-run-test-script.md](docs/lesson-05-run-test-script.md)
+
+Covers `scripts/test.sh`, `set -e`, writing assertions that fail the build, the debugging checklist, and common permission/path problems.
 
 ## Common Pipeline Patterns
 
@@ -144,64 +150,6 @@ Do these in order:
 13. Convert one stage into parallel stages.
 14. Create a multibranch pipeline job.
 
-## Debugging Checklist
-
-When a Jenkins build fails, check these first:
-
-- Read the console log from the first failing line, not the last line.
-- Check the workspace path with `pwd`.
-- Check available files with `ls -la`.
-- Confirm scripts are executable with `ls -l scripts/`.
-- Confirm the correct branch was checked out.
-- Confirm required tools are installed on the agent.
-- Confirm environment variables are set.
-- Confirm credentials IDs match Jenkins configuration.
-- Confirm plugins are installed.
-- Rerun the exact failing command locally if possible.
-
-## Common Problems
-
-### Permission Denied
-
-If Jenkins says a script cannot be executed:
-
-```text
-permission denied: ./scripts/test.sh
-```
-
-Fix it locally:
-
-```bash
-chmod +x scripts/test.sh scripts/build.sh
-```
-
-### Command Not Found
-
-If Jenkins says `node`, `python`, `java`, `make`, or another command is missing, the agent does not have that tool installed.
-
-Fix options:
-
-- Install the tool on the Jenkins agent.
-- Use a Docker-based agent with the tool included.
-- Use Jenkins tool configuration.
-
-### Credentials Not Found
-
-If Jenkins says a credential ID does not exist, check:
-
-- The credential was created in Jenkins.
-- The ID matches exactly.
-- The job has permission to use it.
-- The credential is stored in the correct scope.
-
-### Pipeline Syntax Error
-
-If Jenkins cannot parse the `Jenkinsfile`, check:
-
-- Braces are balanced.
-- Strings are quoted correctly.
-- Declarative blocks are in the correct location.
-- Plugin-specific steps are available.
 
 ## What To Learn Later
 
