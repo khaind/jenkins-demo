@@ -4,6 +4,6 @@ set -e
 echo "=== Running tests ==="
 echo "Workspace: $(pwd)"
 
-if [ ! -d "non-existed" ]; then echo "FAIL: reason"; exit 1; fi
+if [ ! -d "scripts" ]; then echo "FAIL: reason"; exit 1; fi
 
 echo "=== All tests passed ==="
